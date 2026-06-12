@@ -2,6 +2,17 @@ import math
 
 ## - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+def manhattanDistance(p1, p2):
+	"""
+		p1: Point 1 as an array of N coordinates
+		p2: Point 2 as an array of N coordinates
+
+		Returns: Manhattan distance (distance when walking only along the axes) between p1 and p2
+	"""
+	return sum(abs(a - b) for a, b in zip(p1, p2))
+
+## - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 def euclideanDistanceSquared(p1, p2):
 	"""
 		p1: Point 1 as an array of N coordinates
@@ -63,26 +74,33 @@ def runExample():
 	print("Example:")
 	print("")
 
-	a1 = [1, 1, 1]
-	b1 = [2, 2, 2]
-	d1 = euclideanDistanceSquared(a1, b1)
+	a_m = [1, 1]
+	b_m = [2, 2]
+	d_m = manhattanDistance(a_m, b_m)
+	print("Manhattan distance between "
+	      "[" + "; ".join(map(str, a_m)) + "] and "
+	      "[" + "; ".join(map(str, b_m)) + "] is " + str(d_m) + ".")
+
+	a_es = [1, 1, 1]
+	b_es = [2, 2, 2]
+	d_es = euclideanDistanceSquared(a_es, b_es)
 	print("Squared Euclidean distance between "
-	      "[" + "; ".join(map(str, a1)) + "] and "
-	      "[" + "; ".join(map(str, b1)) + "] is " + str(d1) + ".")
+	      "[" + "; ".join(map(str, a_es)) + "] and "
+	      "[" + "; ".join(map(str, b_es)) + "] is " + str(d_es) + ".")
 
-	a2 = [0, 1, 2, 3, 4]
-	b2 = [5, 6, 7, 8, 9]
-	d2 = euclideanDistance(a2, b2)
+	a_e = [0, 1, 2, 3, 4]
+	b_e = [5, 6, 7, 8, 9]
+	d_e = euclideanDistance(a_e, b_e)
 	print("Euclidean distance between "
-	      "[" + "; ".join(map(str, a2)) + "] and "
-	      "[" + "; ".join(map(str, b2)) + "] is " + str(d2) + ".")
+	      "[" + "; ".join(map(str, a_e)) + "] and "
+	      "[" + "; ".join(map(str, b_e)) + "] is " + str(d_e) + ".")
 
-	a3 = [50.978056, 11.029167] # Erfurt
-	b3 = [52.518611, 13.408333] # Berlin
-	d3 = greatCircleDistance(a3, b3)
+	a_gc = [50.978056, 11.029167] # Erfurt
+	b_gc = [52.518611, 13.408333] # Berlin
+	d_gc = greatCircleDistance(a_gc, b_gc)
 	print("Great-circle distance between "
-	      "[" + "; ".join(map(str, a3)) + "] and "
-	      "[" + "; ".join(map(str, b3)) + "] is " + str(d3) + " km.")
+	      "[" + "; ".join(map(str, a_gc)) + "] and "
+	      "[" + "; ".join(map(str, b_gc)) + "] is " + str(d_gc) + " km.")
 
 	print("")
 
@@ -90,6 +108,7 @@ def runExample():
 
 if __name__ == "__main__":
 	print("Available functions:")
+	print("\tmanhattanDistance(p1, p2)")
 	print("\teuclideanDistanceSquared(p1, p2)")
 	print("\tdistanceSquared(p1, p2)")
 	print("\tgreatCircleDistance(p1, p2)")
